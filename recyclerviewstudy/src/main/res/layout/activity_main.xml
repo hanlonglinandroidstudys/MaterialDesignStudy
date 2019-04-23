@@ -20,5 +20,17 @@
        android:layout_height="wrap_content"
        android:onClick="onClick"
        android:text="RecyclerView添加头和尾"/>
+   <Button
+       android:id="@+id/btn_goto_qq"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:onClick="onClick"
+       android:text="RecyclerView实现qq滑动动画"/>
+   <Button
+       android:id="@+id/btn_goto_qq2"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:onClick="onClick"
+       android:text="RecyclerView实现qq滑动动画2(侧滑停留)"/>
 
 </LinearLayout>

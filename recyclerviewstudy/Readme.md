@@ -15,3 +15,10 @@
 >>WrapRecyclerView 封装的支持添加头部和尾部的RecyclerView
 
 >>AddHeaderAc 测试Activity
+
+* 3.实现交互动画效果（拖拽和侧滑）
+* * 实现方式： 借助ItemTouchHelper,重写callback; 实现效果： RecyclerView的拖拽和侧滑；
+
+>>QQSlideAc 测试Actiivty ,实现侧滑删除和拖拽
+
+>>QQSlideAc 测试Activity ,实现侧滑停留和拖拽

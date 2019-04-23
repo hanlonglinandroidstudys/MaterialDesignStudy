@@ -7,6 +7,8 @@ import android.view.View;
 
 import hanlonglin.com.recyclerviewstudy.activitys.AddHeaderAc;
 import hanlonglin.com.recyclerviewstudy.activitys.ItemDecorationAc;
+import hanlonglin.com.recyclerviewstudy.activitys.QQSlideAc;
+import hanlonglin.com.recyclerviewstudy.activitys.QQSlideAc2;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_goto_addHeader:
                 go(AddHeaderAc.class);
+                break;
+            case R.id.btn_goto_qq:
+                go(QQSlideAc.class);
+                break;
+            case R.id.btn_goto_qq2:
+                go(QQSlideAc2.class);
                 break;
         }
     }
