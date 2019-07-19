@@ -1,1 +1,1 @@
-include ':app', ':recyclerviewstudy', ':matrialdesignapp'
+include ':app', ':recyclerviewstudy', ':matrialdesignapp', ':viewstudy', ':screencompat'
