@@ -2,7 +2,6 @@ package com.dayouzc.e2eplatform.screencompat.com.screen.util;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.WindowManager;
 
 import java.lang.reflect.Field;
@@ -15,8 +14,16 @@ import java.lang.reflect.Field;
  */
 public class UIUtil {
 
+    // 美工提供的图片长宽
+    private final static float STANDARD_WIDTH = 1440f;
+    private final static float STANDARD_HEIGHT = 1920f;
+
+    // 实际设备信息 例如 1080 * 1920
+    private float displayMetricsWidth;
+    private float displayMetricsHeight;
+
     /**
-     * 用于得到状态栏的宽度
+     * 用于反射得到状态栏的宽度
      */
     private static final String DIMEN_CLASS = "com.android.internal.R$dimen";
     /**
@@ -25,9 +32,6 @@ public class UIUtil {
     private static final String SYSTEM_BAR_HEIGHT_FIELD = "system_bar_height";
 
     Context mContext;
-    // 实际设备信息 例如 1080 * 1920
-    private float displayMetricsWidth;
-    private float displayMetricsHeight;
 
     //单例
     private static UIUtil instance;
@@ -47,10 +51,14 @@ public class UIUtil {
             windowManager.getDefaultDisplay().getMetrics(displayMetrics);
             int systemBarHeight = getSystemBarHeight(context);
             // 考虑横竖屏的问题
-            if(displayMetrics.widthPixels>displayMetrics.heightPixels){
+            if (displayMetrics.widthPixels > displayMetrics.heightPixels) {
                 // 横屏
-            }else{
+                this.displayMetricsWidth = (float) displayMetrics.heightPixels;
+                this.displayMetricsHeight = (float) displayMetrics.widthPixels - systemBarHeight;
+            } else {
                 // 竖屏
+                this.displayMetricsWidth = (float) displayMetrics.widthPixels;
+                this.displayMetricsHeight = (float) (displayMetrics.heightPixels - systemBarHeight);
             }
         }
     }
@@ -60,7 +68,7 @@ public class UIUtil {
      *
      * @return
      */
-    private int getSystemBarHeight(Context context){
+    private int getSystemBarHeight(Context context) {
         try {
             Class<?> dimenClass = Class.forName(DIMEN_CLASS);
             Object object = dimenClass.newInstance();
@@ -73,4 +81,19 @@ public class UIUtil {
         return 0;
     }
 
+    /**
+     * 获取水平缩放比
+     *
+     * @return
+     */
+    public float getHorizatontalScaleValue() {
+        return ((float) (this.displayMetricsWidth)) / STANDARD_WIDTH;
+    }
+
+    /**
+     * 获取垂直缩放比
+     */
+    public float getVerticalScaleValue() {
+        return ((float) (this.displayMetricsHeight) / (STANDARD_HEIGHT - getSystemBarHeight(mContext)));
+    }
 }
